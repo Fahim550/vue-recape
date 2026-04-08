@@ -9,7 +9,6 @@ console.log('blogs', blogList)
 
 <template>
   <main>
-    <!-- <TheWelcome /> -->
     <h1 class="text-3xl text-green-500">This is a home page</h1>
     <BlogList :blogList="blogList" />
   </main>
