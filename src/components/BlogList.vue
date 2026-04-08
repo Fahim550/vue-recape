@@ -38,12 +38,20 @@ const props = defineProps({
 })
 
 const addToWishlist = (blog) => {
-  const existingWishlist = JSON.parse(localStorage.getItem('wishList')) || []
+  let existingWishlist
+
+  try {
+    existingWishlist = JSON.parse(localStorage.getItem('wishList')) || []
+  } catch (error) {
+    existingWishlist = []
+  }
 
   if (!Array.isArray(existingWishlist)) {
     existingWishlist = []
   }
+
   existingWishlist.push(blog)
+
   //   console.log('Existing Wishlist:', existingWishlist)
   localStorage.setItem('wishList', JSON.stringify(existingWishlist))
 }

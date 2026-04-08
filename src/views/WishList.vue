@@ -18,11 +18,25 @@
           <hr class="mt-4" />
           <span class="text-xs">{{ blog.category }}</span>
           &nbsp;<span class="text-xs text-gray-500">{{ blog.tag }}</span>
+          <button
+            @click="removeFromWishlist(blog)"
+            class="bg-red-500 block py-1 px-2 rounded-2xl text-white cusrsor-pointer text-xs mt-2"
+          >
+            remove wishlist
+          </button>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script setup>
-const wishList = JSON.parse(localStorage.getItem('wishList')) || []
+import { ref } from 'vue'
+const wishList = ref(JSON.parse(localStorage.getItem('wishList')) || [])
+
+const removeFromWishlist = (blog) => {
+  const updatedWishlist = wishList.value.filter((item) => item.id !== blog.id)
+  localStorage.setItem('wishList', JSON.stringify(updatedWishlist))
+  console.log('remove', blog)
+  console.log('updatedWishlist', updatedWishlist)
+}
 </script>
