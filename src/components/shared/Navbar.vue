@@ -51,7 +51,7 @@
             </svg>
             <span class="sr-only">Search icon</span>
           </div>
-          <form @submit.prevent="handleSearch">
+          <form @submit.prevent>
             <input
               type="text"
               id="search-navbar"
@@ -147,14 +147,13 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 const emit = defineEmits(['search'])
 
 const searchText = ref('')
 
-const handleSearch = () => {
-  console.log('serach', searchText.value)
-  emit('search', searchText.value)
-}
+watch(searchText, (newValue) => {
+  emit('search', newValue)
+})
 </script>
