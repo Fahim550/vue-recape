@@ -1,5 +1,6 @@
 <script setup>
 import BlogList from '@/components/BlogList.vue'
+import BlogCatagory from '@/components/shared/BlogCatagory.vue'
 
 import { blogs } from '@/data'
 import { computed, ref } from 'vue'
@@ -22,6 +23,9 @@ console.log('filteredBlogs', filteredBlogs)
 <template>
   <main>
     <h1 class="text-3xl text-green-500">This is a home page</h1>
-    <BlogList :blogList="filteredBlogs" />
+    <div class="flex gap-4">
+      <BlogList :blogList="filteredBlogs" />
+      <BlogCatagory />
+    </div>
   </main>
 </template>

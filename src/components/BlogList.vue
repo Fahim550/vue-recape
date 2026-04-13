@@ -6,33 +6,37 @@
         v-for="blog in blogList"
         :key="blog.id"
       >
-        <div class="py-4 px-8">
-          <img :src="blog?.authorImage" class="rounded-full h-12 w-12 mb-4" />
-          <!-- < href="#"> -->
-          <h4 class="text-lg mb-3 font-semibold">{{ blog.title }}</h4>
+        <RouterLink :to="`/blog/${blog.id}`">
+          <div class="py-4 px-8">
+            <img :src="blog?.authorImage" class="rounded-full h-12 w-12 mb-4" />
+            <!-- < href="#"> -->
+            <h4 class="text-lg mb-3 font-semibold">{{ blog.title }}</h4>
 
-          <p class="mb-2 text-sm text-gray-600">
-            {{ blog.description }}
-          </p>
+            <p class="mb-2 text-sm text-gray-600">
+              {{ blog.description }}
+            </p>
 
-          <img :src="blog?.blogImage" class="w-100" />
+            <img :src="blog?.blogImage" class="w-100" />
 
-          <hr class="mt-4" />
-          <span class="text-xs">{{ blog.category }}</span>
-          &nbsp;<span class="text-xs text-gray-500">{{ blog.tag }}</span>
-          <button
-            @click="addToWishlist(blog)"
-            class="bg-pink-500 block py-1 px-2 rounded-2xl text-white cusrsor-pointer text-xs mt-2"
-          >
-            add wishlist
-          </button>
-        </div>
+            <hr class="mt-4" />
+            <span class="text-xs">{{ blog.category }}</span>
+            &nbsp;<span class="text-xs text-gray-500">{{ blog.tag }}</span>
+            <button
+              @click="addToWishlist(blog)"
+              class="bg-pink-500 block py-1 px-2 rounded-2xl text-white cusrsor-pointer text-xs mt-2"
+            >
+              add wishlist
+            </button>
+          </div>
+        </RouterLink>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { RouterLink } from 'vue-router'
+
 const props = defineProps({
   blogList: [],
 })
